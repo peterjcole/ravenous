@@ -3,6 +3,10 @@ Following the Codecademy React tutorial [here](https://www.codecademy.com/learn/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Requires a .env file, e.g. ```.env.development.local``` at the root of a project, with a [Yelp API Key](https://www.yelp.com/developers), set to the variable ```REACT_APP_YELP_API_KEY```. 
+
+This app shouldn't be published, due to the exposed API key.
+
 ## Available Scripts
 
 In the project directory, you can run:
