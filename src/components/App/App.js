@@ -27,7 +27,10 @@ class App extends React.Component {
   }
 
   searchYelp(term, location, sortBy) {
-    Yelp.search(term, location, sortBy)
+    Yelp.search(term, location, sortBy).then(results => {
+      this.setState({ businesses: results })
+
+    })
     console.log(`term is ${term}, location is ${location}, sortBy is ${sortBy}`)
   }
 
@@ -36,7 +39,7 @@ class App extends React.Component {
       <div className="App">
         <h1>ravenous</h1>
         <SearchBar searchYelp={this.searchYelp}/>
-        <BusinessList businesses={businesses} />
+        <BusinessList businesses={this.state.businesses} />
       </div>
     );
   }
