@@ -1,7 +1,12 @@
 import React from 'react'
 import './SearchBar.css'
 
+import algoliasearch from 'algoliasearch/lite';
+import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom';
 
+const searchClient = algoliasearch('plUWQU4TFSFQ', '734a4ce92ac4f488faf06614006028f9');
+
+console.log(searchClient)
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -61,6 +66,8 @@ class SearchBar extends React.Component {
 
   render() {
     return (
+      <>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css" integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossorigin="anonymous"></link>
       <div className="SearchBar">
         <div className="SearchBar-sort-options">
           <ul>
@@ -69,12 +76,17 @@ class SearchBar extends React.Component {
         </div>
         <div className="SearchBar-fields">
           <input placeholder="Search Businesses" onChange={this.handleTermChange}/>
-          <input placeholder="Where?" onChange={this.handleLocationChange}/>
+          {/* <input placeholder="Where?" onChange={this.handleLocationChange}/> */}
+          <InstantSearch searchClient={searchClient} indexName="demo_ecommerce">
+            <SearchBox onChange={this.handleLocationChange}/>
+            <Hits />
+          </InstantSearch>
         </div>
         <div className="SearchBar-submit" onClick={this.handleSearch}>
           <a>Let's Go</a>
         </div>
       </div>
+      </>
     )
   }
 }
